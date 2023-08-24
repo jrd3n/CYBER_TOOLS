@@ -27,7 +27,6 @@ wget https://github.com/angryip/ipscan/releases/download/3.7.6/ipscan_3.7.6_all.
 #sudo apt install default-jre
 sudo apt install openjdk-8-jre gdebi
 sudo gdebi ipscan_3.7.6_all.deb
-
 ```
 
 #### Apply my config to angry ip
@@ -36,7 +35,7 @@ if you want to use these openers and set up Angry IP using my config.
 
 ```bash
 
-wget https://raw.githubusercontent.com/jrd3n/Angry_IP_Openers/main/OPENER_TOOL/prefs.xml -O ~/.java/.userPrefs/ipscan/prefs.xml
+wget https://raw.githubusercontent.com/jrd3n/CYBER_TOOLS/main/OPENER_TOOL/prefs.xml -O ~/.java/.userPrefs/ipscan/prefs.xml
 
 ```
 
@@ -74,15 +73,15 @@ https://github.com/kkrypt0nn/wordlists
 ```bash
 
 # Create the installation directory if it doesn't exist
-mkdir -p ~/Tools
+mkdir -p ~/CYBER_TOOLS
 
 # Download the zip archive using wget
 wget https://github.com/kkrypt0nn/wordlists/archive/refs/heads/main.zip -P ~/Tools
 
 # Extract the downloaded archive using unzip
-unzip  ~/Tools/main.zip -d ~/Tools/Wordlists
+unzip  ~/CYBER_TOOLS/main.zip -d ~/CYBER_TOOLS/Wordlists
 
 # House keeping
-rm ~/Tools/main.zip
+rm ~/CYBER_TOOLS/main.zip
 
 ```
