@@ -8,7 +8,6 @@ Tool i use for cyber and the install notes to easily set up.
   - [Angry IP Scanner Install and custom openers](#angry-ip-scanner-install-and-custom-openers)
     - [Install](#install)
       - [Apply my config to angry ip](#apply-my-config-to-angry-ip)
-      - [Install tools for my config](#install-tools-for-my-config)
   - [Word lists](#word-lists)
 
 <!-- /TOC -->
@@ -64,14 +63,6 @@ sudo apt install ssh
 # CP the config to angry IP
 
 cp ~/CYBER_TOOLS/OPENER_TOOL/prefs.xml ~/.java/.userPrefs/ipscan/prefs.xml 
-
-```
-
-#### Install tools for my config
-
-```bash
-
-
 
 ```
 
