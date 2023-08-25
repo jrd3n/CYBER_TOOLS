@@ -9,7 +9,6 @@ Tool i use for cyber and the install notes to easily set up.
     - [Install](#install)
       - [Apply my config to angry ip](#apply-my-config-to-angry-ip)
       - [Install tools for my config](#install-tools-for-my-config)
-    - [Install my tool for updating the openers](#install-my-tool-for-updating-the-openers)
   - [Word lists](#word-lists)
 
 <!-- /TOC -->
@@ -19,6 +18,8 @@ Tool i use for cyber and the install notes to easily set up.
 A place to store my custom scripts openers and such.
 
 ### Install
+
+To install angry IP scanner
 
 On your Linux machine, open a terminal window and enter the following command:
 
@@ -35,13 +36,19 @@ if you want to use these openers and set up Angry IP using my config.
 
 ```bash
 
-wget https://raw.githubusercontent.com/jrd3n/CYBER_TOOLS/main/OPENER_TOOL/prefs.xml -O ~/.java/.userPrefs/ipscan/prefs.xml
+# Create the installation directory if it doesn't exist
+mkdir -p ~/CYBER_TOOLS
 
-```
+# Download the zip archive using wget
+wget wget https://github.com/jrd3n/CYBER_TOOLS/archive/refs/heads/main.zip -P ~/CYBER_TOOLS
 
-#### Install tools for my config
+# Extract the downloaded archive using unzip
+unzip  ~/CYBER_TOOLS/main.zip -d ~/CYBER_TOOLS
 
-```bash
+# House keeping
+rm ~/CYBER_TOOLS/main.zip
+
+# Install the actual tools
 
 sudo apt install hping3
 sudo apt-get install hydra-gtk
@@ -51,17 +58,11 @@ sudo apt install ssh
 
 ```
 
-### Install my tool for updating the openers
+#### Install tools for my config
 
 ```bash
 
-cd OPENER_TOOL
 
-sudo apt install python3-pip
-sudo apt install python3-venv
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
 
 ```
 
@@ -77,7 +78,7 @@ https://github.com/kkrypt0nn/wordlists
 mkdir -p ~/CYBER_TOOLS
 
 # Download the zip archive using wget
-wget https://github.com/kkrypt0nn/wordlists/archive/refs/heads/main.zip -P ~/Tools
+wget https://github.com/kkrypt0nn/wordlists/archive/refs/heads/main.zip -P ~/CYBER_TOOLS
 
 # Extract the downloaded archive using unzip
 unzip  ~/CYBER_TOOLS/main.zip -d ~/CYBER_TOOLS/Wordlists
