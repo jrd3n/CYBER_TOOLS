@@ -21,14 +21,10 @@ fetcher_ip=$1  # Replace with the actual IP address
 output_dir="$HOME/Documents"
 
 # Run Nmap scan and save XML output
-nmap "$fetcher_ip" -p- --reason -A -sT --stats-every=5s -oX "$output_dir/nmap_all_port_scan.xml"
+sudo nmap "$fetcher_ip" -p- -sS --stats-every=5s --max-parallelism 16 -T3 -oX "$output_dir/nmap_all_port_scan.xml"
 
 # Convert XML to HTML using xsltproc
-xsltproc "$output_dir/nmap_100_port_scan.xml" -o "$output_dir/nmap_100_port_scan.html"
+xsltproc "$output_dir/nmap_all_port_scan.xml" -o "$output_dir/nmap_all_port_scan.html"
 
 # Open the HTML report in Firefox
-firefox "$output_dir/nmap_100_port_scan.html"
-
-nmap  ${fetcher.ip} -p- --reason -A -sT --stats-every=5s -oX nmap_scan.xml 
-xsltproc nmap_scan.xml -o nmap_scan.html 
-firefox nmap_scan.html
+firefox "$output_dir/nmap_all_port_scan.html"

