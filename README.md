@@ -61,6 +61,10 @@ sudo apt install nmap
 sudo apt install xsltproc
 sudo apt install ssh
 
+# CP the config to angry IP
+
+cp ~/CYBER_TOOLS/OPENER_TOOL/prefs.xml ~/.java/.userPrefs/ipscan/prefs.xml 
+
 ```
 
 #### Install tools for my config
