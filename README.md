@@ -47,6 +47,7 @@ sudo apt install hping3
 sudo apt-get install hydra-gtk
 sudo apt install nmap
 sudo apt install xsltproc
+sudo apt install ssh
 
 ```
 
