@@ -40,7 +40,7 @@ if you want to use these openers and set up Angry IP using my config.
 mkdir -p ~/CYBER_TOOLS
 
 # Download the zip archive using wget
-wget wget https://github.com/jrd3n/CYBER_TOOLS/archive/refs/heads/main.zip -P ~/CYBER_TOOLS
+wget https://github.com/jrd3n/CYBER_TOOLS/archive/refs/heads/main.zip -P ~/CYBER_TOOLS
 
 # Extract the downloaded archive using unzip
 unzip  ~/CYBER_TOOLS/main.zip -d ~/CYBER_TOOLS
