@@ -45,7 +45,10 @@ wget https://github.com/jrd3n/CYBER_TOOLS/archive/refs/heads/main.zip -P ~/CYBER
 # Extract the downloaded archive using unzip
 unzip  ~/CYBER_TOOLS/main.zip -d ~/CYBER_TOOLS
 
+cp -r ~/CYBER_TOOLS/CYBER_TOOLS-main/* ~/CYBER_TOOLS/
+
 # House keeping
+rm ~/CYBER_TOOLS/CYBER_TOOLS-main
 rm ~/CYBER_TOOLS/main.zip
 
 # Install the actual tools
