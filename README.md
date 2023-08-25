@@ -48,8 +48,10 @@ unzip  ~/CYBER_TOOLS/main.zip -d ~/CYBER_TOOLS
 cp -r ~/CYBER_TOOLS/CYBER_TOOLS-main/* ~/CYBER_TOOLS/
 
 # House keeping
-rm ~/CYBER_TOOLS/CYBER_TOOLS-main
+rm ~/CYBER_TOOLS/CYBER_TOOLS-main -d -r
 rm ~/CYBER_TOOLS/main.zip
+
+chmod +x /home/jordon/CYBER_TOOLS/SCRIPTS/*
 
 # Install the actual tools
 
