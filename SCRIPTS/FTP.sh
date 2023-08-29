@@ -3,7 +3,7 @@
 # Angry IP information -----------------------------------------------------------
 # | Angry Name                 | Execution String              | Run in Terminal | Directory |
 # | -------------------------- | ----------------------------- | --------------- | --------- |
-# | 21_FTP - FTP | THIS_FILE ${fetcher.ip} | TRUE            |           |
+# | 21_FTP - FTP | THIS_FILE ${fetcher.ip} ${fetcher.comment} | TRUE            |           |
 
 # Script information -----------------------------------------------------------
 # | Script Name       : FTP.sh
@@ -15,6 +15,10 @@
 
 # Assign the IP address to the variable
 fetcher_ip=$1  # Replace with the actual IP address
+comment=$2
+
+mkdir ~/Documents/BOXES/$comment
+cd ~/Documents/BOXES/$comment
 
 # Define color variables
 GREEN=$(tput setaf 2)

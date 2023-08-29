@@ -86,7 +86,7 @@ fi
 
 # Hydra attack based on user input
 
-hydra $username_section $password_section $address ssh -e ns $verbose -I -t 4
+hydra $username_section $password_section $address ssh -e ns $verbose -I
 # ...
 
 echo -e "${RED}Hydra attack finished.${NC}"

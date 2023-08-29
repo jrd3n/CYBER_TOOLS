@@ -3,10 +3,10 @@
 # Angry IP information -----------------------------------------------------------
 # | Angry Name                 | Execution String              | Run in Terminal | Directory |
 # | -------------------------- | ----------------------------- | --------------- | --------- |
-# | 23_TELNET - TELNET | THIS_FILE ${fetcher.ip} ${fetcher.comment} 23 | TRUE            |           |
+# | 139_SMB - SBMCLIENT | THIS_FILE ${fetcher.ip} ${fetcher.comment}| TRUE            |           |
 
 # Script information -----------------------------------------------------------
-# | Script Name       : TELNET.sh
+# | Script Name       : SBMCLIENT.sh
 # | Description       : Script for opening ssh
 # | Directory         : ~/CYBER_TOOLS/SCRIPTS/
 # | Author            : Jordon Archer
@@ -16,7 +16,6 @@
 # Assign the IP address to the variable
 fetcher_ip=$1  # Replace with the actual IP address
 comment=$2
-port=$3
 
 mkdir ~/Documents/BOXES/$comment
 cd ~/Documents/BOXES/$comment
@@ -27,7 +26,9 @@ RED=$(tput setaf 1)
 YELLOW=$(tput setaf 3)
 NC=$(tput sgr0) # No Color
 
-# Ask the user if they know the username
-# read -e -p "${YELLOW}What username? : ${NC}" -i "root" username
+smbclient -L $fetcher_ip
 
-telnet $fetcher_ip $port
+# Ask the user if they know the username
+read -e -p "${YELLOW}What SHARENAME? : ${NC}" -i "root" SHARENAME
+
+smbclient \\\\$fetcher_ip\\$SHARENAME
