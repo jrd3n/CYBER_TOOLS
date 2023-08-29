@@ -60,6 +60,10 @@ sudo apt install nmap
 sudo apt install xsltproc
 sudo apt install ssh
 sudo apt install gobuster
+sudo apt install redis-tools
+
+
+sudo snap install metasploit-framework 
 # CP the config to angry IP
 
 cp ~/CYBER_TOOLS/OPENER_TOOL/prefs.xml ~/.java/.userPrefs/ipscan/prefs.xml 
