@@ -4,7 +4,7 @@
 # | Angry Name                 | Execution String              | Run in Terminal | Directory |
 # | -------------------------- | ----------------------------- | --------------- | --------- |
 # | 80_HTTP - HYDRA [HOSTNAME] | THIS_FILE ${fetcher.hostname} ${fetcher.comment} | TRUE            |           |
-# | 80_HTTP - HYDRA [IP]       | THIS_FILE ${fetcher.IP} ${fetcher.comment}      | TRUE            |           |
+# | 80_HTTP - HYDRA [IP]       | THIS_FILE ${fetcher.ip} ${fetcher.comment}      | TRUE            |           |
 
 # Script information -----------------------------------------------------------
 # | Script Name       : HYDRA_WEB.sh
