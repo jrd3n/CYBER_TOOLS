@@ -62,7 +62,7 @@ sudo apt install ssh -y
 sudo apt install gobuster -y
 sudo apt install redis-tools -y
 
-sudo snap install metasploit-framework -y
+sudo snap install metasploit-framework
 # CP the config to angry IP
 
 cp ~/CYBER_TOOLS/OPENER_TOOL/prefs.xml ~/.java/.userPrefs/ipscan/prefs.xml 
