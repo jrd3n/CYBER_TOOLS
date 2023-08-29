@@ -50,6 +50,6 @@ case $attack_level in
         ;;
 esac
 
-gobuster dir -w $dir_list -u http://$address
+gobuster dir -r -e -w $dir_list -u http://$address
 
 echo -e "${RED}gobuster attack finished.${NC}"
