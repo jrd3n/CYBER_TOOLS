@@ -54,16 +54,15 @@ chmod +x /home/jordon/CYBER_TOOLS/SCRIPTS/*
 
 # Install the actual tools
 
-sudo apt install hping3
-sudo apt-get install hydra-gtk
-sudo apt install nmap
-sudo apt install xsltproc
-sudo apt install ssh
-sudo apt install gobuster
-sudo apt install redis-tools
+sudo apt install hping3 -y
+sudo apt-get install hydra-gtk -y
+sudo apt install nmap -y
+sudo apt install xsltproc -y
+sudo apt install ssh -y
+sudo apt install gobuster -y
+sudo apt install redis-tools -y
 
-
-sudo snap install metasploit-framework 
+sudo snap install metasploit-framework -y
 # CP the config to angry IP
 
 cp ~/CYBER_TOOLS/OPENER_TOOL/prefs.xml ~/.java/.userPrefs/ipscan/prefs.xml 
