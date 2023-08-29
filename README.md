@@ -59,6 +59,8 @@ sudo apt-get install hydra-gtk
 sudo apt install nmap
 sudo apt install xsltproc
 sudo apt install ssh
+sudo apt install golang-go
+go install github.com/OJ/gobuster/v3@latest
 
 # CP the config to angry IP
 
