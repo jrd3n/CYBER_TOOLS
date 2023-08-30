@@ -70,20 +70,18 @@ case $attack_level in
 esac
 
 # Ask the user if they know the username
-read -e -p "${YELLOW}Do you know the username? (y/n): ${NC}" -i "n" know_username
+read -e -p "${YELLOW}Enter the username (if known, else blank): ${NC}" username
 
-if [[ $know_username == "y" ]]; then
-    read -e -p "${YELLOW}Enter the username: ${NC}" -i "" username
+if [[ $username != "" ]]; then
     username_section="-l $username"
 else
     username_section="-L $user_name_list"
 fi
 
 # Ask the user if they know the password
-read -e -p "${YELLOW}Do you know the password? (y/n): ${NC}" -i "n" know_password
+read -e -p "${YELLOW}Enter the password (if known, else blank): ${NC}" password
 
-if [[ $know_password == "y" ]]; then
-    read -e -p "${YELLOW}Enter the password: ${NC}" -i "" password
+if [[ $password != "" ]]; then
     password_section="-p $password"
 else
     password_section="-P $password_list"
@@ -93,11 +91,16 @@ fi
 read -e -p "${YELLOW}What is the path of the login page, for example '/login' or '/db/index.php': ${NC}" -i "/" login_dir
 
 # Ask the payload
-read -e -p "${YELLOW}What is the payload, for example 'user=^USER&pass=^PASS^': ${NC}" -i "user=^USER^&pass=^PASS^&next=13eaff016d52034a43e1b5b6eead7c3e" payload
+read -e -p "${YELLOW}What is the payload, for example 'user=^USER&pass=^PASS^': ${NC}" -i "user=%5EUSER%5E&pass=%5EPASS%5E" payload
+
+payload=${payload//%5E/^}
+
+echo "The payload is:"
+echo "${GREEN}${payload}${NC}"
 
 # Ask the unsuccessful_text
 read -e -p "${YELLOW}What text is displayed on an unsuccessful attempt, for example 'incorrect' or 'unsuccessful': ${NC}" -i "incorrect" unsuccessful_text
 
 # Hydra attack based on user input
 
-hydra -L $user_name_list_1 -P $password_list_1 -e n $address http-post-form "$login_dir:$payload:$unsuccessful_text" $verbose -I -f
+hydra -L $user_name_list_1 -P $password_list_1 -e n $address http-post-form "$login_dir:$payload:$unsuccessful_text" $verbose -I -f -o OUTPUT.txt

