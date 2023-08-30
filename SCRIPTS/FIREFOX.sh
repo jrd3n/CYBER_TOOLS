@@ -31,4 +31,6 @@ if [[ $port == "ask" ]]; then
     read -e -p "${YELLOW}What port Number: ${NC}" -i "" port
 fi
 
+# firefox 
+
 firefox $fetcher_ip:$port

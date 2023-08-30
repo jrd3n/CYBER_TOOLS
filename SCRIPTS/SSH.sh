@@ -29,4 +29,4 @@ NC=$(tput sgr0) # No Color
 # Ask the user if they know the username
 read -e -p "${YELLOW}What username? : ${NC}" -i "root" username
 
-SSH username@$fetcher_ip
+ssh $username@$fetcher_ip

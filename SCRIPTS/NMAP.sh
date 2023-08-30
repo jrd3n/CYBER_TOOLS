@@ -37,4 +37,9 @@ sudo nmap "$fetcher_ip" --top-ports=$number_of_ports --reason -A -O -sC -sT -sV 
 xsltproc "nmap_${number_of_ports}_port_scan.xml" -o "nmap_${number_of_ports}_port_scan.html"
 
 # Open the HTML report in Firefox
-firefox "nmap_${number_of_ports}_port_scan.html"
+# firefox  & disown && exit
+# firefox $fetcher_ip:$port & disown && exit
+
+nohup firefox "nmap_${number_of_ports}_port_scan.html" &> /dev/null
+
+# bash -c "firefox "nmap_${number_of_ports}_port_scan.html" &> /dev/null &"; exit
