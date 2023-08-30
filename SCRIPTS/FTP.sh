@@ -27,6 +27,6 @@ YELLOW=$(tput setaf 3)
 NC=$(tput sgr0) # No Color
 
 # Ask the user if they know the username
-# read -e -p "${YELLOW}What username? : ${NC}" -i "root" username
+read -e -p "${YELLOW}What username? : ${NC}" -i "anonymous" username
 
-ftp $fetcher_ip
+ftp $username@$fetcher_ip

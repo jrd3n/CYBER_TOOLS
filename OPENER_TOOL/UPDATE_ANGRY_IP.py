@@ -35,9 +35,12 @@ def extract_table(file_path):
 def main():
     all_tables = [] # Create a list to hold all tables
 
-    for filename in os.listdir(directory_path):
+    for filename in sorted(os.listdir(directory_path)):
         if filename.endswith(".sh"):
             file_path = os.path.join(directory_path, filename)
+
+            print(colored(f"{filename}", 'green'),end="\t")
+
             table = extract_table(file_path)
 
             if not table.empty:
@@ -52,14 +55,14 @@ def main():
                     lambda row: f"{row['Angry Name']}###{row['Execution String'].replace('THIS_FILE', file_path_tilde)}@@@{'1' if row['Run in Terminal'] == 'TRUE' else '0'}@@@{row['Directory']}###",
                     axis=1)
 
-                print(colored(f"Table content in {filename}:", 'green'))
+                print(colored(f"Table Found:", 'green'))
                 print(f"{table}\n")
 
                 # this is the point i want to make the opener string and change the THIS_FILE to the actual dir of the script
 
                 all_tables.append(table) # Append the table to the list
             else:
-                print(colored(f"No table found in {filename}\n", 'red'))
+                print(colored(f"No table found\n", 'red'))
 
     combined_dataframe = pd.concat(all_tables, ignore_index=True) # Concatenate all tables into one DataFrame
 

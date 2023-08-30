@@ -3,33 +3,59 @@
 # Angry IP information -----------------------------------------------------------
 # | Angry Name                 | Execution String              | Run in Terminal | Directory |
 # | -------------------------- | ----------------------------- | --------------- | --------- |
-# | 0_RECON - NMAP [all Ports] | THIS_FILE ${fetcher.hostname} ${fetcher.comment} | TRUE            |           |
+# | 0_RECON - NMAP [ALL PORTS]            | THIS_FILE ${fetcher.hostname} ${fetcher.comment}| TRUE            |           |
 
 # Script information -----------------------------------------------------------
-# | Script Name       : NMAP_ALL_PORTS.sh
+# | Script Name       : NMAP.sh
 # | Description       : Script for scaning ports using nmap
 # | Directory         : ~/CYBER_TOOLS/SCRIPTS/
 # | Author            : Jordon Archer
 # | Date              : August 24, 2023
 # ------------------------------------------------------------------------------
 
-# Assign the IP address to the variable
-fetcher_ip=$1  # Replace with the actual IP address
-#fetcher_ip="10.81.252.14"  # Replace with the actual IP address
+
+# Directory and file variables
 comment=$2
+mkdir -p ~/Documents/BOXES/$comment  # The -p flag ensures the directory is created if it doesn't exist
+cd ~/Documents/BOXES/$comment || exit 1  # Exit the script if cd fails
 
-mkdir ~/Documents/BOXES/$comment
-cd ~/Documents/BOXES/$comment
+file_name="nmap_all_port_scan"
+full_path="./$file_name"  # Since we've changed directory, we can use ./ to represent the current directory
 
-# Run Nmap scan and save XML output
-nmap $fetcher_ip -p- -sV --stats-every=5s --max-parallelism 16 -T3 --min-rate=1000 -oX "nmap_all_port_scan.xml"
+# Check if the file exists
+if [ -f "$file_name.xml" ]; then
+    echo "The file '$file_name.xml' already exists in the folder."
 
-# Convert XML to HTML using xsltproc
-xsltproc "nmap_all_port_scan.xml" -o "nmap_all_port_scan.html"
+    # Ask the user if they want to perform the scan again
+    read -p "Would you like to perform the scan again? (y/n): " user_input
+
+    if [ "$user_input" == "y" ] || [ "$user_input" == "Y" ]; then
+        echo "Performing a new scan."
+
+        # Run Nmap scan and save XML output
+        fetcher_ip=$1  # Get the IP from the first argument
+        # nmap $fetcher_ip -p- -Pn -sV --stats-every=5s --max-retries 1000 --min-rate 50 -T2 --host-timeout 60s -oX $file_name.xml
+
+        nmap $fetcher_ip -p- -Pn -sV --stats-every=5s -oX $file_name.xml
+
+        # Convert XML to HTML
+        xsltproc $file_name.xml -o $file_name.html
+    else
+        echo "Skipping the scan."
+    fi
+
+else
+    echo "The file '$file_name.xml' does not exist. Performing a new scan."
+
+    # Run Nmap scan and save XML output
+    fetcher_ip=$1  # Get the IP from the first argument
+    nmap $fetcher_ip -p- -Pn -sV --stats-every=5s --max-parallelism 255 -T3 --min-rate=3000 -oX $file_name.xml
+
+    # Convert XML to HTML
+    xsltproc $file_name.xml -o $file_name.html
+fi
 
 # Open the HTML report in Firefox
-# firefox "nmap_all_port_scan.html"
-
 nohup firefox "nmap_all_port_scan.html" &> /dev/null
 
-exit
+exit 0  # Successfully exit script

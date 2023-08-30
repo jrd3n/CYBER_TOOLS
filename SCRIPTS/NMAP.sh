@@ -31,7 +31,7 @@ NC=$(tput sgr0) # No Color
 read -e -p "${YELLOW}How many ports do you want to scan: ${NC}" -i "100" number_of_ports
 
 # Run Nmap scan and save XML output
-sudo nmap "$fetcher_ip" --top-ports=$number_of_ports --reason -A -O -sC -sT -sV --stats-every=5s -oX "nmap_${number_of_ports}_port_scan.xml"
+sudo nmap "$fetcher_ip" -v --top-ports=$number_of_ports --reason -Pn -A --script vuln,version,brute,fuzzer,malware,auth,discovery -oX "nmap_${number_of_ports}_port_scan.xml"
 
 # Convert XML to HTML using xsltproc
 xsltproc "nmap_${number_of_ports}_port_scan.xml" -o "nmap_${number_of_ports}_port_scan.html"
