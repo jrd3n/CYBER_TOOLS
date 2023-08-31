@@ -26,10 +26,10 @@ YELLOW=$(tput setaf 3)
 NC=$(tput sgr0) # No Color
 
 # Define username and password lists
-dir_list_1="$HOME/CYBER_TOOLS/Wordlists/wordlists-main/directory_scanner/most_common.txt"
-dir_list_2="$HOME/CYBER_TOOLS/Wordlists/wordlists-main/directory_scanner/common.txt"
-dir_list_3="$HOME/CYBER_TOOLS/Wordlists/wordlists-main/directory_scanner/big.txt"
-dir_list_4="$HOME/CYBER_TOOLS/Wordlists/wordlists-main/directory_scanner/directory_list_2.3_medium.txt"
+dir_list_1="$HOME/WORDLISTS/directory_scanner/most_common.txt"
+dir_list_2="$HOME/WORDLISTS/directory_scanner/common.txt"
+dir_list_3="$HOME/WORDLISTS/directory_scanner/big.txt"
+dir_list_4="$HOME/WORDLISTS/directory_scanner/directory_list_2.3_medium.txt"
 
 # Ask the user for the level of attack
 read -e -p "${YELLOW}Choose the level of attack (1/2/3/4): ${NC}" -i "1" attack_level

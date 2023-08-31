@@ -27,15 +27,15 @@ YELLOW=$(tput setaf 3)
 NC=$(tput sgr0) # No Color
 
 # Define username and password lists
-user_name_list_1="$HOME/CYBER_TOOLS/Wordlists/wordlists-main/usernames/http_default_users.txt"
-user_name_list_2="$HOME/CYBER_TOOLS/Wordlists/wordlists-main/usernames/cirt_default_usernames.txt"
-user_name_list_3="$HOME/CYBER_TOOLS/Wordlists/wordlists-main/usernames/multiple_sources_users.txt"
-user_name_list_4="$HOME/CYBER_TOOLS/Wordlists/wordlists-main/usernames/xato_net_usernames.txt"
+user_name_list_1="$HOME/WORDLISTS/usernames/http_default_users.txt"
+user_name_list_2="$HOME/WORDLISTS/usernames/cirt_default_usernames.txt"
+user_name_list_3="$HOME/WORDLISTS/usernames/multiple_sources_users.txt"
+user_name_list_4="$HOME/WORDLISTS/usernames/xato_net_usernames.txt"
 
-password_list_1="$HOME/CYBER_TOOLS/Wordlists/wordlists-main/passwords/http_default_passwords.txt"
-password_list_2="$HOME/CYBER_TOOLS/Wordlists/wordlists-main/passwords/unix_passwords.txt"
-password_list_3="$HOME/CYBER_TOOLS/Wordlists/wordlists-main/passwords/most_used_passwords.txt"
-password_list_4="$HOME/CYBER_TOOLS/Wordlists/wordlists-main/passwords/xato_net_passwords.txt"
+password_list_1="$HOME/WORDLISTS/passwords/http_default_passwords.txt"
+password_list_2="$HOME/WORDLISTS/passwords/unix_passwords.txt"
+password_list_3="$HOME/WORDLISTS/passwords/most_used_passwords.txt"
+password_list_4="$HOME/WORDLISTS/passwords/xato_net_passwords.txt"
 
 # Ask the user for the level of attack
 read -e -p "${YELLOW}Choose the level of attack (1/2/3/4): ${NC}" -i "1" attack_level

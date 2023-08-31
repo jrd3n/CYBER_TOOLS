@@ -9,10 +9,6 @@ Tool i use for cyber and the install notes to easily set up.
     - [Install](#install)
       - [Apply my config to angry ip](#apply-my-config-to-angry-ip)
   - [Word lists](#word-lists)
-- [Create the installation directory if it doesn't exist](#create-the-installation-directory-if-it-doesnt-exist)
-- [Download the zip archive using wget](#download-the-zip-archive-using-wget)
-- [Extract the downloaded archive using unzip](#extract-the-downloaded-archive-using-unzip)
-- [House keeping](#house-keeping)
 
 <!-- /TOC -->
 
@@ -39,26 +35,31 @@ if you want to use these openers and set up Angry IP using my config.
 
 ```bash
 
-cd ~/
+mkdir -p ~/DEL
+
+# Download the zip archive using wget
+wget https://github.com/jrd3n/CYBER_TOOLS/archive/refs/heads/main.zip -P ~/DEL
+
+# Extract the downloaded archive using unzip
+unzip  ~/main.zip ~/DEL
 
 # Create the installation directory if it doesn't exist
 mkdir -p ~/CYBER_TOOLS
 
-# Download the zip archive using wget
-wget https://github.com/jrd3n/CYBER_TOOLS/archive/refs/heads/main.zip -P ~/
-
-# Extract the downloaded archive using unzip
-unzip  ~/main.zip
-
-mv ~/CYBER_TOOLS-main/* ~/CYBER_TOOLS
+mv ~/DEL/CYBER_TOOLS-main/* ~/CYBER_TOOLS
 
 cp -r ~/CYBER_TOOLS/CYBER_TOOLS-main/* ~/CYBER_TOOLS/
 
 # House keeping
-rm ~/CYBER_TOOLS-main -d
-rm ~/main.zip
+rm ~/DEL -d
 
 chmod +x ~/CYBER_TOOLS/SCRIPTS/*
+
+```
+
+Now install the actual tools
+
+```bash
 
 # Install the actual tools
 
@@ -87,15 +88,19 @@ https://github.com/kkrypt0nn/wordlists
 ```bash
 
 # Create the installation directory if it doesn't exist
-mkdir -p ~/WORD_LIST
+
+mkdir -p ~/DEL
 
 # Download the zip archive using wget
-wget https://github.com/kkrypt0nn/wordlists/archive/refs/heads/main.zip -P ~/
+wget https://github.com/kkrypt0nn/wordlists/archive/refs/heads/main.zip -P ~/DEL
 
 # Extract the downloaded archive using unzip
-unzip  ~/main.zip -d ~/WORD_LIST/Wordlists
+
+unzip  ~/DEL/main.zip -d ~/DEL
+mkdir ~/WORDLISTS -p
+mv ~/DEL/wordlists-main/* ~/WORDLISTS
 
 # House keeping
-rm ~/WORD_LIST/main.zip
+rm ~/DEL -dr
 
-``
+```
