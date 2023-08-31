@@ -9,6 +9,10 @@ Tool i use for cyber and the install notes to easily set up.
     - [Install](#install)
       - [Apply my config to angry ip](#apply-my-config-to-angry-ip)
   - [Word lists](#word-lists)
+- [Create the installation directory if it doesn't exist](#create-the-installation-directory-if-it-doesnt-exist)
+- [Download the zip archive using wget](#download-the-zip-archive-using-wget)
+- [Extract the downloaded archive using unzip](#extract-the-downloaded-archive-using-unzip)
+- [House keeping](#house-keeping)
 
 <!-- /TOC -->
 
@@ -24,7 +28,7 @@ On your Linux machine, open a terminal window and enter the following command:
 
 ```bash
 wget https://github.com/angryip/ipscan/releases/download/3.7.6/ipscan_3.7.6_all.deb
-#sudo apt install default-jre
+sudo apt install default-jre
 sudo apt install openjdk-8-jre gdebi
 sudo gdebi ipscan_3.7.6_all.deb
 ```
@@ -36,21 +40,21 @@ if you want to use these openers and set up Angry IP using my config.
 ```bash
 
 # Create the installation directory if it doesn't exist
-mkdir -p ~/CYBER_TOOLS
+mkdir -p ~/my_data
 
 # Download the zip archive using wget
 wget https://github.com/jrd3n/CYBER_TOOLS/archive/refs/heads/main.zip -P ~/CYBER_TOOLS
 
 # Extract the downloaded archive using unzip
-unzip  ~/CYBER_TOOLS/main.zip -d ~/CYBER_TOOLS
+unzip  ~/main.zip -d ~/my_data
 
-cp -r ~/CYBER_TOOLS/CYBER_TOOLS-main/* ~/CYBER_TOOLS/
+cp -r ~/CYBER_TOOLS-main/* ~/CYBER_TOOLS/
 
 # House keeping
-rm ~/CYBER_TOOLS/CYBER_TOOLS-main -d -r
-rm ~/CYBER_TOOLS/main.zip
+rm ~/CYBER_TOOLS-main -d -r
+rm ~/main.zip
 
-chmod +x /home/jordon/CYBER_TOOLS/SCRIPTS/*
+chmod +x ~/my_data/SCRIPTS/*
 
 # Install the actual tools
 
@@ -66,7 +70,7 @@ sudo snap install searchsploit
 sudo snap install metasploit-framework
 # CP the config to angry IP
 
-cp ~/CYBER_TOOLS/OPENER_TOOL/prefs.xml ~/.java/.userPrefs/ipscan/prefs.xml 
+cp ~/my_data/OPENER_TOOL/prefs.xml ~/.java/.userPrefs/ipscan/prefs.xml 
 
 ```
 
@@ -79,15 +83,15 @@ https://github.com/kkrypt0nn/wordlists
 ```bash
 
 # Create the installation directory if it doesn't exist
-mkdir -p ~/CYBER_TOOLS
+mkdir -p ~/WORD_LIST
 
 # Download the zip archive using wget
 wget https://github.com/kkrypt0nn/wordlists/archive/refs/heads/main.zip -P ~/CYBER_TOOLS
 
 # Extract the downloaded archive using unzip
-unzip  ~/CYBER_TOOLS/main.zip -d ~/CYBER_TOOLS/Wordlists
+unzip  ~/WORD_LIST/main.zip -d ~/WORD_LIST/Wordlists
 
 # House keeping
-rm ~/CYBER_TOOLS/main.zip
+rm ~/WORD_LIST/main.zip
 
-```
+``
