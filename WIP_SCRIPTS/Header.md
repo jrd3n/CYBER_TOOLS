@@ -5,6 +5,7 @@ Angry IP information -----------------------------------------------------------
 | -------------------------- | ----------------------------- | --------------- | --------- |
 | 80_HTTP - HYDRA [HOSTNAME] | THIS_FILE ${fetcher.hostname} | TRUE            |           |
 | 80_HTTP - HYDRA [IP]       | THIS_FILE ${fetcher.IP}       | TRUE            |           |
+
 Script information -----------------------------------------------------------
 | Script Name       : 80_HTTP_HYDRA_HOSTNAME.sh
 | Description       : Script for conducting Hydra attacks on HTTP services.

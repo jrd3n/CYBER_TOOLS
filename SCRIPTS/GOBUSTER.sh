@@ -16,6 +16,9 @@
 
 address=$1
 
+# Ask the user for the level of attack
+read -e -p "${YELLOW}Which port number: ${NC}" -i "80" port
+
 # Define color variables
 GREEN=$(tput setaf 2)
 RED=$(tput setaf 1)
@@ -50,6 +53,6 @@ case $attack_level in
         ;;
 esac
 
-gobuster dir -r -e -w $dir_list -u http://$address
+gobuster dir -r -e -w $dir_list -u http://$address:$port
 
 echo -e "${RED}gobuster attack finished.${NC}"
