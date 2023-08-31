@@ -40,15 +40,15 @@ if you want to use these openers and set up Angry IP using my config.
 ```bash
 
 # Create the installation directory if it doesn't exist
-mkdir -p ~/my_data
+mkdir -p ~/CYBER_TOOLS
 
 # Download the zip archive using wget
-wget https://github.com/jrd3n/CYBER_TOOLS/archive/refs/heads/main.zip -P ~/CYBER_TOOLS
+wget https://github.com/jrd3n/CYBER_TOOLS/archive/refs/heads/main.zip -P ~/
 
 # Extract the downloaded archive using unzip
-unzip  ~/main.zip -d ~/my_data
+unzip  ~/main.zip
 
-cp -r ~/CYBER_TOOLS-main/* ~/CYBER_TOOLS/
+cp -r ~/CYBER_TOOLS/CYBER_TOOLS-main/* ~/CYBER_TOOLS/
 
 # House keeping
 rm ~/CYBER_TOOLS-main -d -r
