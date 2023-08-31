@@ -17,7 +17,7 @@
 address=$1
 comment=$2
 
-mkdir ~/Documents/BOXES/$comment
+mkdir ~/Documents/BOXES/$comment -p
 cd ~/Documents/BOXES/$comment
 
 # Define color variables

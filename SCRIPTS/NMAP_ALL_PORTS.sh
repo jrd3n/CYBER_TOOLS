@@ -16,7 +16,7 @@
 
 # Directory and file variables
 comment=$2
-mkdir -p ~/Documents/BOXES/$comment  # The -p flag ensures the directory is created if it doesn't exist
+mkdir -p ~/Documents/BOXES/$comment -p  # The -p flag ensures the directory is created if it doesn't exist
 cd ~/Documents/BOXES/$comment || exit 1  # Exit the script if cd fails
 
 file_name="nmap_all_port_scan"

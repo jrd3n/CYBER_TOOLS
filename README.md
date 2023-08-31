@@ -39,6 +39,8 @@ if you want to use these openers and set up Angry IP using my config.
 
 ```bash
 
+cd ~/
+
 # Create the installation directory if it doesn't exist
 mkdir -p ~/CYBER_TOOLS
 
@@ -48,13 +50,15 @@ wget https://github.com/jrd3n/CYBER_TOOLS/archive/refs/heads/main.zip -P ~/
 # Extract the downloaded archive using unzip
 unzip  ~/main.zip
 
+mv ~/CYBER_TOOLS-main/* ~/CYBER_TOOLS
+
 cp -r ~/CYBER_TOOLS/CYBER_TOOLS-main/* ~/CYBER_TOOLS/
 
 # House keeping
-rm ~/CYBER_TOOLS-main -d -r
+rm ~/CYBER_TOOLS-main -d
 rm ~/main.zip
 
-chmod +x ~/my_data/SCRIPTS/*
+chmod +x ~/CYBER_TOOLS/SCRIPTS/*
 
 # Install the actual tools
 
@@ -70,7 +74,7 @@ sudo snap install searchsploit
 sudo snap install metasploit-framework
 # CP the config to angry IP
 
-cp ~/my_data/OPENER_TOOL/prefs.xml ~/.java/.userPrefs/ipscan/prefs.xml 
+cp ~/CYBER_TOOLS/OPENER_TOOL/prefs.xml ~/.java/.userPrefs/ipscan/prefs.xml 
 
 ```
 
@@ -86,10 +90,10 @@ https://github.com/kkrypt0nn/wordlists
 mkdir -p ~/WORD_LIST
 
 # Download the zip archive using wget
-wget https://github.com/kkrypt0nn/wordlists/archive/refs/heads/main.zip -P ~/CYBER_TOOLS
+wget https://github.com/kkrypt0nn/wordlists/archive/refs/heads/main.zip -P ~/
 
 # Extract the downloaded archive using unzip
-unzip  ~/WORD_LIST/main.zip -d ~/WORD_LIST/Wordlists
+unzip  ~/main.zip -d ~/WORD_LIST/Wordlists
 
 # House keeping
 rm ~/WORD_LIST/main.zip

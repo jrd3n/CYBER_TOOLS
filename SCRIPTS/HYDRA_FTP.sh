@@ -18,7 +18,7 @@ fetcher_ip=$1  # Replace with the actual IP address
 #fetcher_ip="10.81.252.14"  # Replace with the actual IP address
 comment=$2
 
-mkdir ~/Documents/BOXES/$comment
+mkdir ~/Documents/BOXES/$comment -p
 cd ~/Documents/BOXES/$comment
 
 # Define color variables
