@@ -23,5 +23,3 @@ NC=$(tput sgr0) # No Color
 
 redis-cli -h $address
 # ...
-
-# echo -e "${RED}Hydra attack finished.${NC}"

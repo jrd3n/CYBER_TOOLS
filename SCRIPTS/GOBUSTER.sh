@@ -14,25 +14,86 @@
 # | Date              : August 24, 2023
 # ------------------------------------------------------------------------------      :
 
-address=$1
+# -----------------------------------------------------------------------------------------------------
 
-# Ask the user for the level of attack
-read -e -p "${YELLOW}Which port number: ${NC}" -i "80" port
+# Define colour variables
+HEADER1=$(tput setaf 5; tput bold)
+HEADER2=$(tput setaf 4; tput bold)
+HEADER3=$(tput setaf 2; tput bold)
+IMPORTANT_INFO=$(tput setaf 1; tput bold)
+EXPECTED_INPUT=$(tput setaf 3; tput setab 0; tput bold)
+GENERAL_INFO=$(tput setaf 6)
+SUCCESS=$(tput setaf 2)
+WARNING=$(tput setaf 3)
+ERROR=$(tput setaf 1)
+SCRIPT_EXAMPLE=$(tput setaf 7; tput setab 2)
+NC=$(tput sgr0) # No Colour
 
-# Define color variables
-GREEN=$(tput setaf 2)
-RED=$(tput setaf 1)
-YELLOW=$(tput setaf 3)
-NC=$(tput sgr0) # No Color
+# -----------------------------------------------------------------------------------------------------
 
+# Tool name https://manytools.org/hacker-tools/ascii-banner/ font banner3
+echo -e "${HEADER1}"  # Set colour to green and make it bold
+echo " ######    #######  ########  ##     ##  ######  ######## ######## ########  
+##    ##  ##     ## ##     ## ##     ## ##    ##    ##    ##       ##     ## 
+##        ##     ## ##     ## ##     ## ##          ##    ##       ##     ## 
+##   #### ##     ## ########  ##     ##  ######     ##    ######   ########  
+##    ##  ##     ## ##     ## ##     ##       ##    ##    ##       ##   ##   
+##    ##  ##     ## ##     ## ##     ## ##    ##    ##    ##       ##    ##  
+ ######    #######  ########   #######   ######     ##    ######## ##     ## "
+echo -e "${NC}"  # Reset colour and bold
+
+# -----------------------------------------------------------------------------------------------------
+
+#description
+echo -e "${HEADER2}Description${NC}"
+
+echo -e "\nGOBUSTER opener.\n"
+
+# -----------------------------------------------------------------------------------------------------
+
+# Variable table
+echo -e "${HEADER2}Preloaded variables${NC}"  # Set title colour to blue and make it bold
+
+## Define the variable
+ip=$1
 # Define username and password lists
 dir_list_1="$HOME/WORDLISTS/directory_scanner/most_common.txt"
 dir_list_2="$HOME/WORDLISTS/directory_scanner/common.txt"
 dir_list_3="$HOME/WORDLISTS/directory_scanner/big.txt"
 dir_list_4="$HOME/WORDLISTS/directory_scanner/directory_list_2.3_medium.txt"
 
+## Print the header
+printf "\n%-20s | %-15s\n" "${HEADER3}Variable" "Value${NC}"
+printf "%-38s\n" "--------------------------------------"
+
+# #Print the variable and its value
+printf "%-20s | %-15s\n" "${SCRIPT_EXAMPLE}\$ip${NC}" "$ip"
+printf "%-20s | %-15s\n" "${SCRIPT_EXAMPLE}\$dir_list_1${NC}" "$dir_list_1"
+printf "%-20s | %-15s\n" "${SCRIPT_EXAMPLE}\$dir_list_2${NC}" "$dir_list_2"
+printf "%-20s | %-15s\n" "${SCRIPT_EXAMPLE}\$dir_list_3${NC}" "$dir_list_3"
+printf "%-20s | %-15s\n" "${SCRIPT_EXAMPLE}\$dir_list_4${NC}" "$dir_list_4"
+
+echo ""
+
+# -----------------------------------------------------------------------------------------------------
+
+# Example string
+echo -e "${HEADER2}Example String${NC}"  # Set title colour to cyan and make it bold
+
+echo -e "${SCRIPT_EXAMPLE}\ngobuster dir -r -e -w \$dir_list_1 -u http://$ip:80${NC}\n"
+
+# -----------------------------------------------------------------------------------------------------
+
+# Tell the user we are running the script
+echo -e "${HEADER2}Script${NC}"  # Set title colour to cyan and make it bold
+
+# -----------------------------------------------------------------------------------------------------
+
 # Ask the user for the level of attack
-read -e -p "${YELLOW}Choose the level of attack (1/2/3/4): ${NC}" -i "1" attack_level
+read -e -p "${EXPECTED_INPUT}Which port number: ${NC}" -i "80" port
+
+# Ask the user for the level of attack
+read -e -p "${EXPECTED_INPUT}Choose the level of attack (1/2/3/4): ${NC}" -i "1" attack_level
 
 case $attack_level in
     1)
@@ -49,10 +110,13 @@ case $attack_level in
         ;;
     *)
         echo "Invalid attack level. Defaulting to level 1."
-        dir_list=$user_name_list_1
+        dir_list=$dir_list_1
         ;;
 esac
 
-gobuster dir -r -e -w $dir_list -u http://$address:$port
+# Tell the user we are running the script
+echo -e "${HEADER2}Script used${NC}"  # Set title colour to cyan and make it bold
 
-echo -e "${RED}gobuster attack finished.${NC}"
+echo -e "\ngobuster dir -r -e -w $dir_list -u http://$address:$port${NC}"
+
+gobuster dir -r -e -w $dir_list -u http://$address:$port
