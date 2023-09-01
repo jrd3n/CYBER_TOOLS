@@ -6,16 +6,14 @@ mkdir -p ~/DEL
 wget https://github.com/jrd3n/CYBER_TOOLS/archive/refs/heads/main.zip -P ~/DEL
 
 # Extract the downloaded archive using unzip
-unzip  ~/main.zip ~/DEL
+unzip  ~/DEL/main.zip -d ~/DEL
 
 # Create the installation directory if it doesn't exist
 mkdir -p ~/CYBER_TOOLS
 
 mv ~/DEL/CYBER_TOOLS-main/* ~/CYBER_TOOLS
 
-cp -r ~/CYBER_TOOLS/CYBER_TOOLS-main/* ~/CYBER_TOOLS/
-
 # House keeping
-rm ~/DEL -d
+rm ~/DEL -d -r
 
 chmod +x ~/CYBER_TOOLS/SCRIPTS/*

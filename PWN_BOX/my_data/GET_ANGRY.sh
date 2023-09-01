@@ -8,3 +8,7 @@ sudo apt install default-jre
 sudo gdebi ipscan_3.7.6_all.deb
 
 ipscan
+
+cp ~/CYBER_TOOLS/OPENER_TOOL/prefs.xml ~/.java/.userPrefs/ipscan/prefs.xml
+
+ipscan
