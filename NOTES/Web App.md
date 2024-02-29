@@ -17,8 +17,6 @@ Have a look at the .js files. We are looking for things like:
 Press F12, go to the memory/Application tab. look for the cookies section. we are looking for:
 1. editable fields.
 2. 
-
-
 ## Parameter-based access control methods
 
 Some applications determine the user's access rights or role at login, and then store this information in a user-controllable location. This could be:

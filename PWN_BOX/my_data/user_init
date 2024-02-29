@@ -1,5 +1,0 @@
-#!/bin/bash
-
-~/my_data/GET_WORDLIST.sh
-
-~/my_data/GET_OPENERS.sh

@@ -1,6 +1,6 @@
 # Tools for Cyber
 
-Tool i use for cyber and the install notes to easily set up.
+Tools I use for cyber security, and the install notes to easily set up.
 
 <!-- TOC -->
 
@@ -76,7 +76,6 @@ sudo snap install metasploit-framework
 # CP the config to angry IP
 
 cp ~/CYBER_TOOLS/OPENER_TOOL/prefs.xml ~/.java/.userPrefs/ipscan/prefs.xml 
-
 ```
 
 ## Word lists
