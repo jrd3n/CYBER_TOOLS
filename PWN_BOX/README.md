@@ -1,1 +1,0 @@
-Copy these files to the my_data folder.
