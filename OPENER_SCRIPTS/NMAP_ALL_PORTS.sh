@@ -3,7 +3,7 @@
 # Angry IP information -----------------------------------------------------------
 # | Angry Name                 | Execution String              | Run in Terminal | Directory |
 # | -------------------------- | ----------------------------- | --------------- | --------- |
-# | 0_RECON - NMAP [ALL PORTS]            | THIS_FILE ${fetcher.hostname} ${fetcher.comment}| TRUE            |           |
+# | 0_RECON - NMAP [ALL PORTS]            | THIS_FILE ${fetcher.ip} ${fetcher.comment}| TRUE            |           |
 
 # Script information -----------------------------------------------------------
 # | Script Name       : NMAP.sh
@@ -13,13 +13,13 @@
 # | Date              : August 24, 2023
 # ------------------------------------------------------------------------------
 
-
 # Directory and file variables
+fetcher_ip=$1  # Get the IP from the first argument
 comment=$2
 mkdir -p ~/Documents/BOXES/$comment -p  # The -p flag ensures the directory is created if it doesn't exist
 cd ~/Documents/BOXES/$comment || exit 1  # Exit the script if cd fails
 
-file_name="nmap_all_port_scan"
+file_name="NMAP_ALL_PORT_(${comment})"
 full_path="./$file_name"  # Since we've changed directory, we can use ./ to represent the current directory
 
 # Check if the file exists
@@ -32,8 +32,6 @@ if [ -f "$file_name.xml" ]; then
     if [ "$user_input" == "y" ] || [ "$user_input" == "Y" ]; then
         echo "Performing a new scan."
 
-        # Run Nmap scan and save XML output
-        fetcher_ip=$1  # Get the IP from the first argument
         # nmap $fetcher_ip -p- -Pn -sV --stats-every=5s --max-retries 1000 --min-rate 50 -T2 --host-timeout 60s -oX $file_name.xml
 
         nmap $fetcher_ip -p- -Pn -sV --stats-every=5s -oX $file_name.xml
@@ -48,7 +46,7 @@ else
     echo "The file '$file_name.xml' does not exist. Performing a new scan."
 
     # Run Nmap scan and save XML output
-    fetcher_ip=$1  # Get the IP from the first argument
+
     nmap $fetcher_ip -p- -Pn -sV --stats-every=5s --max-parallelism 255 -T3 --min-rate=3000 -oX $file_name.xml
 
     # Convert XML to HTML
@@ -56,6 +54,6 @@ else
 fi
 
 # Open the HTML report in Firefox
-nohup firefox "nmap_all_port_scan.html" &> /dev/null
+nohup firefox $file_name.html &> /dev/null
 
 exit 0  # Successfully exit script
