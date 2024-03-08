@@ -3,7 +3,7 @@
 # Angry IP information -----------------------------------------------------------
 # | Angry Name                 | Execution String              | Run in Terminal | Directory |
 # | -------------------------- | ----------------------------- | --------------- | --------- |
-# | 0_RECON - NMAP_DEEP             | THIS_FILE ${fetcher.hostname} ${fetcher.comment}| TRUE            |           |
+# | 0_RECON - NMAP_DEEP             | THIS_FILE ${fetcher.ip} ${fetcher.comment}| TRUE            |           |
 
 # Script information -----------------------------------------------------------
 # | Script Name       : NMAP.sh
@@ -58,7 +58,7 @@ ip=$1  # Replace with the actual IP address
 #fetcher_ip="10.81.252.14"  # Replace with the actual IP address
 comment=$2
 
-dir="~/Documents/BOXES/$comment"
+dir=~/Documents/BOXES/$comment
 
 mkdir $dir -p
 cd $dir
@@ -77,8 +77,6 @@ echo -e "${HEADER2}Script${NC}"  # Set title colour to cyan and make it bold
 
 # -----------------------------------------------------------------------------------------------------
 
-target="10.129.109.232"
-
 while true; do
     # Function to perform Nmap scan
 
@@ -87,9 +85,9 @@ while true; do
     # Example string
     echo -e "${HEADER2}Example String${NC}"  # Set title colour to cyan and make it bold
 
-    echo -e "${SCRIPT_EXAMPLE}\nsudo nmap -p- -O -Pn -oA nmap_all $target -v${NC}\n"
+    echo -e "${SCRIPT_EXAMPLE}\nsudo nmap -p- -O -Pn -oA nmap_all $ip -v${NC}\n"
 
-    sudo nmap -p- -O -Pn -oA nmap_all $target -v
+    sudo nmap -p- -O -Pn -oA nmap_all $ip -v
 
 # -----------------------------------------------------------------------------------------------------
 
@@ -144,7 +142,7 @@ else
 
         mkdir -p "$dir/$port/nmap/xmls"
 
-        nmap_scan_function "$target" "$port" "-Pn -A --script banner,version,discovery,auth,fuzzer,vuln --reason" "nmap_aggressive_disco_scripts"
+        nmap_scan_function "$ip" "$port" "-Pn -A --script banner,version,discovery,auth,fuzzer,vuln --reason" "nmap_aggressive_disco_scripts"
 
     done
 
