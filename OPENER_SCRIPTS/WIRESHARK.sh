@@ -1,9 +1,10 @@
 #!/bin/bash
 
 # Angry IP information -----------------------------------------------------------
-# | Angry Name                 | Execution String                   | Run in Terminal | Directory |
-# | -------------------------- | ---------------------------------- | --------------- | --------- |
-# | 0_RECON - WIRESHARK [HELLO]| THIS_FILE ${fetcher.comment} HELLO | TRUE            |           |
+# | Angry Name                  | Execution String                   | Run in Terminal | Directory |
+# | --------------------------  | ---------------------------------- | --------------- | --------- |
+# | 0_RECON - WIRESHARK [HELLO] | THIS_FILE ${fetcher.comment} HELLO | TRUE            |           |
+# | 0_RECON - WIRESHARK [UPDATE]| THIS_FILE ${fetcher.comment} HELLO | TRUE            |           |
 
 # Script information -----------------------------------------------------------
 # | Script Name       : WIRESHARK.sh
