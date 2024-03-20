@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Angry IP information -----------------------------------------------------------
-# | Angry Name                 | Execution String              | Run in Terminal | Directory |
-# | -------------------------- | ----------------------------- | --------------- | --------- |
-# | MISC OPEN FOLDER      | THIS_FILE ${fetcher.comment}       | FALSE           |           |
+# | Angry Name                 | Execution String                   | Run in Terminal | Directory |
+# | -------------------------- | ---------------------------------- | --------------- | --------- |
+# | MISC OPEN FOLDER           | THIS_FILE ${fetcher.comment}       | FALSE           |           |
 
 # Script information -----------------------------------------------------------
 # | Script Name       : OPEN_FOLDER.sh
@@ -18,6 +18,6 @@
 # Directory and file variables
 comment=$1
 
-mkdir -p ~/Documents/BOXES/$comment -p  # The -p flag ensures the directory is created if it doesn't exist
+source ~/CYBER_TOOLS/OPENER_SCRIPTS/SUB_SCRIPTS/FOLDER.sh
 
-dolphin ~/Documents/BOXES/$comment
+dolphin ./

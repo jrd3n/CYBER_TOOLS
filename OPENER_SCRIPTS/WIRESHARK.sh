@@ -4,7 +4,7 @@
 # | Angry Name                  | Execution String                   | Run in Terminal | Directory |
 # | --------------------------  | ---------------------------------- | --------------- | --------- |
 # | 0_RECON - WIRESHARK [HELLO] | THIS_FILE ${fetcher.comment} HELLO | TRUE            |           |
-# | 0_RECON - WIRESHARK [UPDATE]| THIS_FILE ${fetcher.comment} HELLO | TRUE            |           |
+# | 0_RECON - WIRESHARK [UPDATE]| THIS_FILE ${fetcher.comment} UPDATE | TRUE            |           |
 
 # Script information -----------------------------------------------------------
 # | Script Name       : WIRESHARK.sh
@@ -24,9 +24,9 @@ mkdir -p ~/Documents/BOXES/$comment -p  # The -p flag ensures the directory is c
 
 cd ~/Documents/BOXES/$comment
 
-# sudo wireshark -w "WIRESHARK_FILE_$SUFFIX.pcap"
+sudo wireshark -w "WIRESHARK_FILE_$SUFFIX.pcap"
 
-sudo wireshark
+# sudo wireshark -w 
 
 # I would like to save the file with a specific file name
 # i would like to chown the file to $USER

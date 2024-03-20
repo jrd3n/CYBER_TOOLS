@@ -3,7 +3,7 @@
 # Angry IP information -----------------------------------------------------------
 # | Angry Name                 | Execution String              | Run in Terminal | Directory |
 # | -------------------------- | ----------------------------- | --------------- | --------- |
-# | 6379_REDIS - REDIS-CLI | THIS_FILE ${fetcher.ip}  | TRUE            |           |
+# | 6379_REDIS - REDIS-CLI     | THIS_FILE ${fetcher.ip}       | TRUE            |           |
 
 # Script information -----------------------------------------------------------
 # | Script Name       : REDIS-CLI.sh

@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Angry IP information -----------------------------------------------------------
-# | Angry Name                 | Execution String              | Run in Terminal | Directory |
-# | -------------------------- | ----------------------------- | --------------- | --------- |
-# | 80_HTTP - FIREFOX [HOSTNAME] | THIS_FILE ${fetcher.hostname} 80| FALSE            |           |
-# | 80_HTTP - FIREFOX [IP]       | THIS_FILE ${fetcher.ip} 80     | FALSE            |           |
+# | Angry Name                    | Execution String                  | Run in Terminal | Directory |
+# | ----------------------------- | --------------------------------- | --------------- | --------- |
+# | 80_HTTP - FIREFOX [HOSTNAME]  | THIS_FILE ${fetcher.hostname} 80| FALSE            |           |
+# | 80_HTTP - FIREFOX [IP]        | THIS_FILE ${fetcher.ip} 80      | FALSE            |           |
 # | ANY_HTTP - FIREFOX [HOSTNAME] | THIS_FILE ${fetcher.hostname} ask| TRUE            |           |
 # | ANY_HTTP - FIREFOX [IP]       | THIS_FILE ${fetcher.ip} ask     | TRUE            |           |
 

@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Angry IP information -----------------------------------------------------------
-# | Angry Name                 | Execution String              | Run in Terminal | Directory |
-# | -------------------------- | ----------------------------- | --------------- | --------- |
-# | 9999_MISC - METASPLOIT | THIS_FILE ${fetcher.ip} ${fetcher.comment} | TRUE            |           |
+# | Angry Name                 | Execution String                           | Run in Terminal | Directory |
+# | -------------------------- | ------------------------------------------ | --------------- | --------- |
+# | 9999_MISC - METASPLOIT     | THIS_FILE ${fetcher.ip} ${fetcher.comment} | TRUE            |           |
 
 # Script information -----------------------------------------------------------
 # | Script Name       : METASPLOIT.sh
