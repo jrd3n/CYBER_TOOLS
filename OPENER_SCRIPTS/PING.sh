@@ -3,7 +3,7 @@
 # Angry IP information -----------------------------------------------------------
 # | Angry Name                 | Execution String              | Run in Terminal | Directory |
 # | -------------------------- | ----------------------------- | --------------- | --------- |
-# | 0_ALL - PING               | THIS_FILE ${fetcher.ip}       | TRUE            |           |
+# | MISC - PING                | THIS_FILE ${fetcher.ip}       | TRUE            |           |
 
 # Script information -----------------------------------------------------------
 # | Script Name       : OPENER_SCRIPTS/PING.sh

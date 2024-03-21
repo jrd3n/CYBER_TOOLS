@@ -3,7 +3,7 @@
 # Angry IP information -----------------------------------------------------------
 # | Angry Name                 | Execution String              | Run in Terminal | Directory |
 # | -------------------------- | ----------------------------- | --------------- | --------- |
-# | 0_RECON - NMAP_DEEP             | THIS_FILE ${fetcher.ip} ${fetcher.comment}| TRUE            |           |
+# | 0_ALL - NMAP [DEEP]        | THIS_FILE ${fetcher.ip} ${fetcher.comment}| TRUE            |           |
 
 # Script information -----------------------------------------------------------
 # | Script Name       : NMAP.sh

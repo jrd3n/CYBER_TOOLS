@@ -3,7 +3,7 @@
 # Angry IP information -----------------------------------------------------------
 # | Angry Name                 | Execution String                   | Run in Terminal | Directory |
 # | -------------------------- | ---------------------------------- | --------------- | --------- |
-# | MISC OPEN FOLDER           | THIS_FILE ${fetcher.comment}       | FALSE           |           |
+# | MISC - OPEN FOLDER         | THIS_FILE ${fetcher.comment}       | FALSE           |           |
 
 # Script information -----------------------------------------------------------
 # | Script Name       : OPEN_FOLDER.sh

@@ -3,7 +3,7 @@
 # Angry IP information -----------------------------------------------------------
 # | Angry Name                 | Execution String                           | Run in Terminal | Directory |
 # | -------------------------- | ------------------------------------------ | --------------- | --------- |
-# | 9999_MISC - METASPLOIT     | THIS_FILE ${fetcher.ip} ${fetcher.comment} | TRUE            |           |
+# | 0_ALL - METASPLOIT         | THIS_FILE ${fetcher.ip} ${fetcher.comment} | TRUE            |           |
 
 # Script information -----------------------------------------------------------
 # | Script Name       : METASPLOIT.sh
@@ -13,30 +13,61 @@
 # | Date              : August 29, 2023
 # ------------------------------------------------------------------------------      :
 
-# Assign the IP address to the variable
-fetcher_ip=$1  # Replace with the actual IP address
+# Load Variables
+
+fetcher_ip=$1  # Get the IP from the first argument
 comment=$2
 
-# Define colour variables
-GREEN=$(tput setaf 2)
-RED=$(tput setaf 1)
-YELLOW=$(tput setaf 3)
-NC=$(tput sgr0) # No Colour
+# Load colours
+source ~/CYBER_TOOLS/OPENER_SCRIPTS/SUB_SCRIPTS/COLOURS.sh
+source ~/CYBER_TOOLS/OPENER_SCRIPTS/SUB_SCRIPTS/FOLDER.sh
 
-# Create and change directory
-mkdir -p ~/Documents/BOXES/$comment
-cd ~/Documents/BOXES/$comment || { echo "${RED}Failed to change directory.${NC}"; exit 1; }
+# Display Header
 
-# Define file name
-file_name="nmap_all_port_scan.xml"
-full_path="~/Documents/BOXES/$comment/$file_name"
+# Tool name https://manytools.org/hacker-tools/ascii-banner/ font banner3
+echo -e "${HEADER1}"  # Set colour to green and make it bold
 
-# Run the NMAP script
-echo "${YELLOW}Running NMAP scan...${NC}"
-~/CYBER_TOOLS/SCRIPTS/NMAP_ALL_PORTS.sh $fetcher_ip $comment
+echo "███╗   ███╗███████╗████████╗ █████╗ ███████╗██████╗ ██╗      ██████╗ ██╗████████╗
+████╗ ████║██╔════╝╚══██╔══╝██╔══██╗██╔════╝██╔══██╗██║     ██╔═══██╗██║╚══██╔══╝
+██╔████╔██║█████╗     ██║   ███████║███████╗██████╔╝██║     ██║   ██║██║   ██║   
+██║╚██╔╝██║██╔══╝     ██║   ██╔══██║╚════██║██╔═══╝ ██║     ██║   ██║██║   ██║   
+██║ ╚═╝ ██║███████╗   ██║   ██║  ██║███████║██║     ███████╗╚██████╔╝██║   ██║   
+╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝     ╚══════╝ ╚═════╝ ╚═╝   ╚═╝   
+                                                                                 "
+
+echo -e "${NC}"  # Reset colour and bold
+
+#description
+echo -e "${HEADER2}Description${NC}"
+echo -e "NMAP Scan that uses the output from the all port scan and performs a deep scan into the ports.\n"
+echo -e "${NC}---------------------------------------------------------------------\n"
+
+# -----------------------------------------------------------------------------------------------------
+
+file_name="NMAP_ALL_PORT_(${comment})"
+full_path="./$file_name"  # Since we've changed directory, we can use ./ to represent the current directory
+
+# Check if the file exists
+if [ -f "$file_name.gnmap" ]; then
+
+    echo "$file_name.gnmap found!"
+
+    else
+
+    clear
+
+    echo "${WARNING}The file '$file_name.gnmap' does not exist, running the all port scan${NC}"
+
+    source ~/CYBER_TOOLS/OPENER_SCRIPTS/NMAP_ALL_PORTS.sh
+
+fi
+
+# -----------------------------------------------------------------------------------------------------
 
 # Import to Metasploit
+
 echo "${YELLOW}Importing scan result to Metasploit...${NC}"
+
 msfconsole -x "db_import $full_path; set rhost $fetcher_ip; services"
 
 echo "${GREEN}Process completed.${NC}"
