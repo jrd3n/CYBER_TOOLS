@@ -65,7 +65,7 @@ else
         echo "$((i+1))) ${pcap_files[i]}"
     done
 
-    read -p "Enter the number of the file you want to use: " file_choice
+    read -p "${WARNING}Enter the number of the file you want to use: ${NC}" file_choice
     file_choice=$((file_choice-1))
 
     # Validate user selection
@@ -85,7 +85,8 @@ if [ "$file_owner" != "$USER" ]; then
     echo "Changing file ownership to $USER for $pcap_file"
     sudo chown "$USER" "$pcap_file"
 else
-    echo "File $pcap_file is already owned by $USER"
+    echo "${SUCCESS}File $pcap_file is already owned by $USER${NC}"
+    echo ""
 fi
 
 #--------------------------------------------------------------------------------
@@ -101,7 +102,7 @@ echo "Select an IP pair:"
 for i in "${!ip_pair_array[@]}"; do
   printf "%d) %s\n" "$((i+1))" "${ip_pair_array[i]}"
 done
-read -p "Enter the number of your selection: " selection
+read -p "${WARNING}Enter the number of your selection: ${NC}" selection
 selected_pair=${ip_pair_array[$((selection-1))]}
 IFS=$'\t' read -r selected_src selected_dst <<< "$selected_pair"
 
@@ -109,10 +110,10 @@ IFS=$'\t' read -r selected_src selected_dst <<< "$selected_pair"
 client_hello=$(tshark -r "${pcap_file}" -Y "tls.handshake.type == 1 && ip.src == $selected_src && ip.dst == $selected_dst" -T fields -e tls.handshake.ciphersuite)
 
 # Create a new CSV file
-echo "Cipher,Name,Protocol,security,Enc,hash_algorithm,tls_version" > ciphers.csv
+# echo "Cipher,Name,Protocol,security,Enc,hash_algorithm,tls_version" > ciphers.csv
 
 # Display table header
-printf "\n%-10s %-50s %-10s %-10s %-10s %-10s %-10s %-10s\n" "$cipher" "$name" "$protocol" "$security" "$enc" "$hash_algorithm" "$tls_version"
+# printf "\n%-10s %-50s %-10s %-10s %-10s %-10s %-10s %-10s\n" "$cipher" "$name" "$protocol" "$security" "$enc" "$hash_algorithm" "$tls_version"
 
 # Process the client_hello string
 IFS=',' read -ra ciphers <<< "$client_hello"
@@ -195,7 +196,7 @@ do
     fi
 
     # Write the cipher details to the CSV
-    echo "$cipher,$name,$protocol,$security,$enc,$hash_algorithm,$tls_version" >> ciphers.csv
+    # echo "$cipher,$name,$protocol,$security,$enc,$hash_algorithm,$tls_version" >> ciphers.csv
 
     fi
     done
@@ -240,6 +241,6 @@ if [ -n "$filtered_ciphers_table" ]; then
 fi
 
 # Notify the user
-echo "Cipher analysis report has been generated: $output_file"
+echo "${SUCCESS}Cipher analysis report has been generated: $output_file${NC}"
 
 xdg-open "$output_file"
