@@ -11,13 +11,13 @@
 # | 5000_HTTP - FIREFOX [IP]      | THIS_FILE ${fetcher.ip} 5000      | FALSE           |           |
 # | 8000_HTTP - FIREFOX [HOSTNAME]| THIS_FILE ${fetcher.hostname} 8000| FALSE           |           |
 # | 8000_HTTP - FIREFOX [IP]      | THIS_FILE ${fetcher.ip} 8000      | FALSE           |           |
-# | ANY_HTTP - FIREFOX [HOSTNAME] | THIS_FILE ${fetcher.hostname} ask | TRUE            |           |
-# | ANY_HTTP - FIREFOX [IP]       | THIS_FILE ${fetcher.ip} ask       | TRUE            |           |
+# | 0_HTTP - FIREFOX [HOSTNAME] | THIS_FILE ${fetcher.hostname} ask | TRUE            |           |
+# | 0_HTTP - FIREFOX [IP]       | THIS_FILE ${fetcher.ip} ask       | TRUE            |           |
 
 # Script information -----------------------------------------------------------
 # | Script Name       : FIREFOX.sh
 # | Description       : Script for opening firefox
-# | Directory         : ~/CYBER_TOOLS/SCRIPTS/
+# | Directory         : ~/CYBER_TOOLS/OPENER_SCRIPTS/
 # | Author            : Jordon Archer
 # | Date              : August 24, 2023
 # ------------------------------------------------------------------------------

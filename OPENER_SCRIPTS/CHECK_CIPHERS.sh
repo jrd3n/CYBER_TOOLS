@@ -1,7 +1,88 @@
 #!/bin/bash
 
-# pcap file
-pcap_file=$1
+# Angry IP information -----------------------------------------------------------
+# | Angry Name                 | Execution String                           | Run in Terminal        | Directory |
+# | -------------------------- | ------------------------------------------ | ---------------------- | --------- |
+# | MISC - CHECK CYPHERS       | THIS_FILE ${fetcher.ip} ${fetcher.comment} | TRUE                   |           |  
+
+# Script information -----------------------------------------------------------
+# | Script Name       : CHECK_CIPHERS.sh
+# | Description       : A script to check the hello
+# | Directory         : ~/CYBER_TOOLS/SCRIPTS/HYDRA_WEB.sh
+# | Author            : Jordon Archer
+# | Date              : March 21, 2024
+# ------------------------------------------------------------------------------
+
+# Load Variables
+
+fetcher_ip=$1  # Get the IP from the first argument
+comment=$2
+
+# Load colours
+source ~/CYBER_TOOLS/OPENER_SCRIPTS/SUB_SCRIPTS/COLOURS.sh
+source ~/CYBER_TOOLS/OPENER_SCRIPTS/SUB_SCRIPTS/FOLDER.sh
+
+# Display Header
+
+# Tool name https://manytools.org/hacker-tools/ascii-banner/ font ANSI SHADDOW
+echo -e "${HEADER1}"  # Set colour to green and make it bold
+
+echo " ██████╗██╗   ██╗██████╗ ██╗  ██╗███████╗██████╗ 
+██╔════╝╚██╗ ██╔╝██╔══██╗██║  ██║██╔════╝██╔══██╗
+██║      ╚████╔╝ ██████╔╝███████║█████╗  ██████╔╝
+██║       ╚██╔╝  ██╔═══╝ ██╔══██║██╔══╝  ██╔══██╗
+╚██████╗   ██║   ██║     ██║  ██║███████╗██║  ██║
+ ╚═════╝   ╚═╝   ╚═╝     ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+                                                 "
+
+echo -e "${NC}"  # Reset colour and bold
+
+#description
+echo -e "${HEADER2}Description${NC}"
+echo -e "A Script that checks the hello ciphers in a wireshake file.\n"
+echo -e "${NC}---------------------------------------------------------------------\n"
+
+# -----------------------------------------------------------------------------------------------------
+
+# Directory where the .pcap and .pcapng files are located
+pcap_directory="./" # Adjust this to the directory you want to search in
+
+# Find all .pcap and .pcapng files in the specified directory
+pcap_files=($(find "$pcap_directory" -type f \( -iname "*.pcap" -o -iname "*.pcapng" \)))
+
+# Check if any .pcap or .pcapng files were found
+if [ ${#pcap_files[@]} -eq 0 ]; then
+    echo "No .pcap or .pcapng files found in the directory."
+    exit 1
+elif [ ${#pcap_files[@]} -eq 1 ]; then
+    # If only one file is found, use it
+    pcap_file="${pcap_files[0]}"
+    echo "Using the found file: $pcap_file"
+else
+    # If multiple files are found, prompt the user to choose one
+    echo "Multiple .pcap or .pcapng files found. Please select one to use:"
+    for i in "${!pcap_files[@]}"; do
+        echo "$((i+1))) ${pcap_files[i]}"
+    done
+
+    read -p "Enter the number of the file you want to use: " file_choice
+    file_choice=$((file_choice-1))
+
+    # Validate user selection
+    if [ $file_choice -ge 0 ] && [ $file_choice -lt ${#pcap_files[@]} ]; then
+        pcap_file="${pcap_files[$file_choice]}"
+        echo "Using selected file: $pcap_file"
+    else
+        echo "Invalid selection. Exiting."
+        exit 1
+    fi
+fi
+
+#--------------------------------------------------------------------------------
+
+sudo chown $USER $pcap_file
+
+#--------------------------------------------------------------------------------
 
 # Extract IP addresses involved in handshakes
 ip_pairs=$(tshark -r "${pcap_file}" -Y "tls.handshake.type == 1" -T fields -e ip.src -e ip.dst | sort | uniq)

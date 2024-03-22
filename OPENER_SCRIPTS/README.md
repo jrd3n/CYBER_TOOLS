@@ -14,7 +14,7 @@ These scrips are openers for angry IP, these make it easy to launch an attack on
 > - [x] open firefox
 > - [ ] open wireshark and save in folder
 > - [ ] open services (ssh, ftp, telnet)
-> - [ ] automated cipher check based on wireshark output
+> - [x] automated cipher check based on wireshark output
 > - [x] append to host
 > - [x] Dos
 > - [ ] Hydra
