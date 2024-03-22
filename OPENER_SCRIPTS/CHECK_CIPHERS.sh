@@ -80,7 +80,13 @@ fi
 
 #--------------------------------------------------------------------------------
 
-sudo chown $USER $pcap_file
+file_owner=$(stat -c '%U' "$pcap_file")
+if [ "$file_owner" != "$USER" ]; then
+    echo "Changing file ownership to $USER for $pcap_file"
+    sudo chown "$USER" "$pcap_file"
+else
+    echo "File $pcap_file is already owned by $USER"
+fi
 
 #--------------------------------------------------------------------------------
 
@@ -120,6 +126,15 @@ cipher_details=$(echo "$cipher_details" | jq 'walk(if type == "object" then with
 # Show the result in the console using jq to pretty-print the JSON
 # echo "$cipher_details" | jq
 
+# Initialize the strings for tables
+all_ciphers_table=""
+filtered_ciphers_table=""
+
+# Header for tables
+table_header=$(printf "|_. %-50s |_. %-10s |_. %-10s |\r\n" "Name" "Protocol" "Security")
+
+printf "%-50s %-10s %-10s \r\n" "Name" "Protocol" "Security"
+
 # Loop over each cipher and append it to the CSV
 for cipher in "${ciphers[@]}"
 do
@@ -138,7 +153,7 @@ do
     hex_byte_2=$(echo "$hex_byte_2" | tr '[:lower:]' '[:upper:]')
 
     # Search for the specific cipher in the JSON data based on hex_byte_1 and hex_byte_2 using jq
-    filtered_ciphersuites=$(echo "$cipher_details" | jq --arg hex1 "$hex_byte_1" --arg hex2 "$hex_byte_2" '.ciphersuites[] | to_entries[] | select(.value.hex_byte_1 == $hex1 and .value.hex_byte_2 == $hex2)')
+    This_cipher=$(echo "$cipher_details" | jq --arg hex1 "$hex_byte_1" --arg hex2 "$hex_byte_2" '.ciphersuites[] | to_entries[] | select(.value.hex_byte_1 == $hex1 and .value.hex_byte_2 == $hex2)')
 
     # example
 
@@ -158,19 +173,73 @@ do
 
     # echo $filtered_ciphersuites | jq
     # # Extract the specific fields from the cipher_info
-    name=$(echo "$filtered_ciphersuites" | jq -r '.key')
-    protocol=$(echo "$filtered_ciphersuites" | jq -r '.value.protocol_version')
-    security=$(echo "$filtered_ciphersuites" | jq -r '.value.security')
-    enc=$(echo "$filtered_ciphersuites" | jq -r '.value.enc_algorithm')
-    hash_algorithm=$(echo "$filtered_ciphersuites" | jq -r '.value.hash_algorithm')
-    tls_version=$(echo "$filtered_ciphersuites" | jq -r '.value.tls_version')
-    tls_version=$(echo "$tls_version" | tr -d '\n') # remove newlines from this string
-    tls_version=$(echo "$tls_version" | tr ',' ';')
+    name=$(echo "$This_cipher" | jq -r '.key')
+    protocol=$(echo "$This_cipher" | jq -r '.value.protocol_version')
+    security=$(echo "$This_cipher" | jq -r '.value.security')
+    security="${security^^}"
+    enc=$(echo "$This_cipher" | jq -r '.value.enc_algorithm')
+    hash_algorithm=$(echo "$This_cipher" | jq -r '.value.hash_algorithm')
+    tls_version=$(echo "$This_cipher" | jq -r '.value.tls_version')
+    tls_version=$(echo "$This_cipher" | tr -d '\n') # remove newlines from this string
+    tls_version=$(echo "$This_cipher" | tr ',' ';')
+
+    # Display the cipher details in the console
+    printf "%-50s %-10s %-10s\r\n" "$name" "$protocol" "$security"
+
+    # Append to all ciphers string
+    all_ciphers_table+=$(printf "| %-50s  | %-10s  | %-10s  | \r\n" "$name" "$protocol" "$security")
+
+        # Example filter: Add to filtered table if protocol is TLS1.3
+    if [[ "$security" == "WEAK" || "$security" == "INSECURE" ]]; then
+        filtered_ciphers_table+=$(printf "| %-50s  | %-10s  | %-10s  |\r\n" "$name" "$protocol" "$security")
+    fi
 
     # Write the cipher details to the CSV
     echo "$cipher,$name,$protocol,$security,$enc,$hash_algorithm,$tls_version" >> ciphers.csv
 
-    # Display the cipher details in the console
-    printf "%-10s %-50s %-10s %-10s %-10s %-10s %-10s %-10s\n" "$cipher" "$name" "$protocol" "$security" "$enc" "$hash_algorithm" "$tls_version"
     fi
     done
+
+    # Path for the output file
+
+# Extract the base name of the .pcap file (without extension)
+pcap_base_name=$(basename "$pcap_file" .pcap)
+
+# If the file is .pcapng, adjust accordingly
+pcap_base_name=$(basename "$pcap_base_name" .pcapng)
+
+output_file="cipher_analysis_${pcap_base_name}.txt"
+
+# Generate the output file
+{
+echo "Cipher Analysis Report"
+echo "----------------------"
+echo "The following file was analysed $pcap_file."
+echo "The target key pair is $selected_pair."
+echo "----------------------"
+echo "This report outlines the findings of the cipher analysis. It includes a complete list of ciphers followed by a filtered list based on predefined criteria."
+echo ""
+echo "Complete List of Ciphers:"
+echo ""
+echo "$table_header"
+echo "$all_ciphers_table"
+} > "$output_file"
+
+# Check if the filtered_ciphers_table string is not empty
+if [ -n "$filtered_ciphers_table" ]; then
+    {
+    echo ""
+    echo "The Following ciphers were identified as weak or insecure:"
+    echo "-----------------------------------------------------------"
+    echo "$table_header"
+    echo "$filtered_ciphers_table"
+    echo ""
+    echo "*TL Assessment*" 
+    echo "Weak or insecure ciphers were identified in the client hello."
+    } >> "$output_file"
+fi
+
+# Notify the user
+echo "Cipher analysis report has been generated: $output_file"
+
+xdg-open "$output_file"
