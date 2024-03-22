@@ -88,7 +88,7 @@ else
 
         mkdir -p "$dir/$port"
 
-        nmap_scan_function "$ip" "$port" "-Pn -A --script banner,version,discovery,auth,fuzzer,vuln,ssl-enum-ciphers --reason" "nmap_aggressive_($comment)"
+        nmap_scan_function "$fetcher_ip" "$port" "-Pn -A --script banner,version,discovery,auth,fuzzer,vuln,ssl-enum-ciphers --reason" "nmap_aggressive_($comment)"
 
     done
 
