@@ -217,6 +217,8 @@ echo "Cipher Analysis Report"
 echo "----------------------"
 echo "The following file was analysed $pcap_file."
 echo "The target key pair is $selected_pair."
+datestamp=$(date +%Y-%m-%d)
+echo "Analysis was conducted on $datestamp"
 echo "----------------------"
 echo "This report outlines the findings of the cipher analysis. It includes a complete list of ciphers followed by a filtered list based on predefined criteria."
 echo ""
