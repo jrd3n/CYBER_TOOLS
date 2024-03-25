@@ -37,16 +37,15 @@ if you want to use these openers and set up Angry IP using my config.
 
 mkdir -p ~/DEL
 
-# Download the zip archive using wget
-wget https://github.com/jrd3n/CYBER_TOOLS/archive/refs/heads/main.zip -P ~/DEL
+wget https://github.com/jrd3n/CYBER_TOOLS/archive/refs/heads/feb_24.zip -P ~/DEL
 
 # Extract the downloaded archive using unzip
-unzip  ~/DEL/main.zip ~/DEL
+unzip  ~/DEL/feb_24.zip ~/DEL
 
 # Create the installation directory if it doesn't exist
 mkdir -p ~/CYBER_TOOLS
 
-mv ~/DEL/CYBER_TOOLS-main/* ~/CYBER_TOOLS
+mv ~/DEL/CYBER_TOOLS-feb_24/* ~/CYBER_TOOLS
 
 # cp -r ~/CYBER_TOOLS/CYBER_TOOLS-main/* ~/CYBER_TOOLS/
 
