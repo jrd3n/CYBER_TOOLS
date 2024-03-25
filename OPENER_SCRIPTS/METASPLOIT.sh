@@ -68,7 +68,7 @@ fi
 
 echo "${YELLOW}Importing scan result to Metasploit...${NC}"
 
-msfconsole -x "db_import $full_path; set rhost $fetcher_ip; services"
+msfconsole -x "set rhosts $fetcher_ip; db_nmap --script=vuln -p- $fetcher_ip"
 
 echo "${GREEN}Process completed.${NC}"
 

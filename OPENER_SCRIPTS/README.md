@@ -18,6 +18,7 @@ These scrips are openers for angry IP, these make it easy to launch an attack on
 > - [x] append to host
 > - [x] Dos
 > - [ ] Hydra
+> - [ ] metasploit
 > - [ ] Zap
 
 # Angry Name convension
