@@ -57,11 +57,10 @@ echo -e "${HEADER2}Preloaded variables${NC}"  # Set title colour to blue and mak
 ## Define the variable
 ip=$1
 # Define username and password lists
-dir_list_1="$HOME/WORDLISTS/directory_scanner/most_common.txt"
-dir_list_2="$HOME/WORDLISTS/directory_scanner/common.txt"
-dir_list_3="$HOME/WORDLISTS/directory_scanner/big.txt"
-dir_list_4="$HOME/WORDLISTS/directory_scanner/directory_list_2.3_medium.txt"
-
+dir_list_1=$HOME/WORDLISTS/discovery/most_common.txt 
+dir_list_2=$HOME/WORDLISTS/discovery/common.txt
+dir_list_3=$HOME/WORDLISTS/discovery/big.txt
+dir_list_4=$HOME/WORDLISTS/discovery/directory_list_2.3_medium.txt
 ## Print the header
 printf "\n%-20s | %-15s\n" "${HEADER3}Variable" "Value${NC}"
 printf "%-38s\n" "--------------------------------------"
@@ -117,6 +116,6 @@ esac
 # Tell the user we are running the script
 echo -e "${HEADER2}Script used${NC}"  # Set title colour to cyan and make it bold
 
-echo -e "\ngobuster dir -r -e -w $dir_list -u http://$address:$port${NC}"
+echo -e "\ngobuster dir -r -e -w $dir_list -u http://$ip:$port${NC}"
 
-gobuster dir -r -e -w $dir_list -u http://$address:$port
+gobuster dir -r -e -w $dir_list -u http://$ip:$port
