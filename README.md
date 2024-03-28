@@ -39,8 +39,9 @@ mkdir -p ~/DEL
 
 wget https://github.com/jrd3n/CYBER_TOOLS/archive/refs/heads/feb_24.zip -P ~/DEL
 
+cd ~/DEL
 # Extract the downloaded archive using unzip
-unzip  ~/DEL/feb_24.zip ~/DEL
+unzip  ~/DEL/feb_24.zip
 
 # Create the installation directory if it doesn't exist
 mkdir -p ~/CYBER_TOOLS
@@ -48,6 +49,8 @@ mkdir -p ~/CYBER_TOOLS
 mv ~/DEL/CYBER_TOOLS-feb_24/* ~/CYBER_TOOLS
 
 # cp -r ~/CYBER_TOOLS/CYBER_TOOLS-main/* ~/CYBER_TOOLS/
+
+cd ~/CYBER_TOOLS
 
 # House keeping
 rm ~/DEL -d -r
