@@ -99,7 +99,7 @@ wget https://github.com/kkrypt0nn/wordlists/archive/refs/heads/main.zip -P ~/DEL
 
 unzip  ~/DEL/main.zip -d ~/DEL
 mkdir ~/WORDLISTS -p
-mv ~/DEL/wordlists-main/* ~/WORDLISTS
+cp ~/DEL/wordlists-main/wordlists/* ~/WORDLISTS
 
 # House keeping
 rm ~/DEL -dr
