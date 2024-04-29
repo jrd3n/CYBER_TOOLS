@@ -59,7 +59,7 @@ if [ -f "$file_name.xml" ]; then
 
         # nmap $fetcher_ip -p- -Pn -sV --stats-every=5s --max-retries 1000 --min-rate 50 -T2 --host-timeout 60s -oX $file_name.xml
 
-        nmap $fetcher_ip -p- -Pn -sV --stats-every=5s -oX $file_name.xml
+        nmap $fetcher_ip -p- -Pn -sV --open --stats-every=5s -oX $file_name.xml
 
         # Convert XML to HTML
         xsltproc $file_name.xml -o $file_name.html
@@ -72,7 +72,7 @@ else
 
     # Run Nmap scan and save XML output
 
-    nmap $fetcher_ip -p- -Pn -sV --stats-every=5s --max-parallelism 255 -T3 --min-rate=3000 -oA $file_name
+    nmap $fetcher_ip -p- -Pn -sV --open --stats-every=5s --max-parallelism 255 -T3 --min-rate=3000 -oA $file_name
 
     # Convert XML to HTML
     xsltproc $file_name.xml -o $file_name.html

@@ -57,6 +57,8 @@ rm ~/DEL -d -r
 
 chmod +x ~/CYBER_TOOLS/SCRIPTS/*
 
+
+
 ```
 
 Now install the actual tools
@@ -73,6 +75,7 @@ sudo apt install ssh -y
 sudo apt install gobuster -y
 sudo apt install redis-tools -y
 sudo snap install searchsploit
+sudo apt install eyewitness -y 
 
 sudo snap install metasploit-framework
 # CP the config to angry IP
