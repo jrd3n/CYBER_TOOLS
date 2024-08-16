@@ -234,6 +234,7 @@ if [ -n "$filtered_ciphers_table" ]; then
     echo ""
     echo "The Following ciphers were identified as weak or insecure:"
     echo "-----------------------------------------------------------"
+    echo ""
     echo "$table_header"
     echo "$filtered_ciphers_table"
     echo ""
