@@ -9,6 +9,7 @@ Tools I use for cyber security, and the install notes to easily set up.
     - [Install](#install)
       - [Apply my config to angry ip](#apply-my-config-to-angry-ip)
   - [Word lists](#word-lists)
+- [Todo](#todo)
 
 <!-- /TOC -->
 
@@ -108,3 +109,12 @@ mv ~/DEL/wordlists-main/wordlists/* ~/WORDLISTS
 rm ~/DEL -dr
 
 ```
+
+# Todo 
+
+- [ ] make Hydra remote terminal more reliable
+- [ ] make Hydra remote terminal record output in port number folder
+- [ ] update check_ciphers to fail, sha1. question all weak ciphers, if vuln is for lets say tls1.1 and we are on tls1.2 then this is ok.
+- [ ] Make script for finding default passowrds using creds https://github.com/ihebski/DefaultCreds-cheat-sheet, maybe make a worklist
+- [ ] make opener for smbclient
+- [ ] 

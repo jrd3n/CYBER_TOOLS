@@ -59,7 +59,7 @@ if [ -f "$file_name.xml" ]; then
 
         # nmap $fetcher_ip -p- -Pn -sV --stats-every=5s --max-retries 1000 --min-rate 50 -T2 --host-timeout 60s -oX $file_name.xml
 
-        sudo nmap $fetcher_ip -p 0-65535 -sS -sU -Pn -sV -oA $file_name.xml
+        sudo nmap $fetcher_ip -p 0-65535 -sS -sU -Pn -sV -oA $file_name
 
         # Convert XML to HTML
         xsltproc $file_name.xml -o $file_name.html
