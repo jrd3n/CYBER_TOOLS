@@ -72,7 +72,7 @@ else
 
     # Run Nmap scan and save XML output
 
-    sudo nmap $fetcher_ip -p 0-65535 -sS -sU -Pn -sV -sV --stats-every=5s --max-parallelism 255 -T3 --min-rate=3000 -oA $file_name
+    sudo nmap $fetcher_ip -p 0-65535 -sS -sU -Pn -sV --stats-every=5s --max-parallelism 255 -T3 --min-rate=3000 -oA $file_name
 
     # Convert XML to HTML
     xsltproc $file_name.xml -o $file_name.html
