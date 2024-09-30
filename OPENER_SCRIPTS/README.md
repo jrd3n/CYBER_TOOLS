@@ -20,6 +20,7 @@ These scrips are openers for angry IP, these make it easy to launch an attack on
 > - [ ] Hydra
 > - [ ] metasploit
 > - [ ] Zap
+> - [ ] eyewitness https://github.com/RedSiege/EyeWitness
 
 # Angry Name convension
 
